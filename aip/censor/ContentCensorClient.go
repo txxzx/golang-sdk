@@ -78,6 +78,10 @@ func (client *ContentCensorClient) ImgCensorUrl(imgUrl string, options map[strin
 		switch val := val.(type) {
 		case int:
 			data[key] = strconv.Itoa(val)
+		case string:
+			data[key] = val
+		case int64:
+			data[key] = strconv.Itoa(int(val))
 		}
 	}
 	return baseClient.PostUrlForm(__imageCensorUserDefinedUrl, data, &client.auth)
